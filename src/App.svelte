@@ -1,16 +1,14 @@
 <script>
 	import EditableLine from './EditableLine.svelte';
-	import {tick} from 'svelte';
-	let name = 'world';	
+	
 	let fileContent = "";
 	let data = "";
 	let allLines = [];
-	let vttRegEx = /\d+:\d+:\d+\.\d+-->\d+:\d+:\d+\.\d+/;
+	let vttRegEx = /\d+:\d+:\d+\.\d+ *--> *\d+:\d+:\d+\.\d+/;
 	let currentFileName = "data";
 	let hideTimeCode = false;
 	let videoSrc = "https://sample-videos.com/video123/mp4/240/big_buck_bunny_240p_2mb.mp4";
 	let player;
-	let encodedVtt;
 	let joinedLines = "";
 	
 	function readFile(ev) {
@@ -39,11 +37,7 @@
 		player.currentTime = seconds;
 	}
 	
-	function getId(number) {
-		blob[0].id = Number.parseInt(Math.random()*20000);
-		return "test";
-	}
-	
+	//we need to use a delayed promise in order to force the browser (via #await) to actually reload the vtt track
 	function waitForBlob(thedata) {
 		 return new Promise((resolve, reject) => {
 			setTimeout(() => {
