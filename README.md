@@ -6,6 +6,7 @@ live vtt editor
 - link to a video via url
 - select a vtt file
 - start editing
+- download via link when you are done
 
 everything happens in your browser, no backend, no data sent anywhere
 
